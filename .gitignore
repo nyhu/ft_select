@@ -2,4 +2,4 @@
 *.a
 *.swp
 tmp*
-minishell
+ft_select
