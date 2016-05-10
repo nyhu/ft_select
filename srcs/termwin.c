@@ -1,11 +1,23 @@
 #include "ft_select.h"
 
-void	ft_winrec(t_stream *stream)
+int			ft_putcharinterr(int i)
 {
-	struct winsizew;
+	char		c;
 
-	ioctl(stream->fd, TIOCGWINSZ, &w);
-	stream->col = w.ws_col;
+	c = i;
+	ft_putchar_fd(c, FD);
+	return(c);
+}
+
+void		ft_winsize(t_select *select)
+{
+	t_winsize	win;
+
+	ioctl(0, TIOCGWINSZ, &win);
+	select->nb_col = win.ws_col;
+	select->nb_lin = win.ws_row;
+	while (ft_keyparse(select))
+		;
 }
 
 int			ft_termios_handle(t_select *select, int mode)
