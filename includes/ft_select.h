@@ -31,21 +31,6 @@
 # define CTERM_ERR "unable to configure terminal"
 # define READ_ERR "an error append during read"
 # define FD 2
-# define CLF 0x0A //\n
-# define SUP 0x7E335B1B //sup
-# define CHT 0x09 //\t
-# define DEL 0x7F //DEL
-# define LEF 0x445B1B //left
-# define RIG 0x435B1B //right
-# define UPP 0x415B1B //up
-# define DOW 0x425B1B //down
-# define CLEF 0x44353B315B1B //CTRL left
-# define CRIG 0x43353B315B1B //CTRL up
-# define CUPP 0x41353B315B1B //CTRL right
-# define CDOW 0x42353B315B1B //CTRL down
-# define END 0x464F1B //end
-# define HOM 0x484F1B //home
-# define NUL 0x00 //\0
 
 typedef struct winzise	t_winsize;
 typedef struct termios	t_termios;
@@ -56,12 +41,12 @@ typedef struct	s_select
 	t_dclist	*pos;
 	t_termios	termios_backup;
 	char		buf[9];
-	t_ushort		maxel;
-	t_ushort		maxcol;
+	t_ushort	nb_col;
+	t_ushort	nb_lin;
+	t_ushort	maxlin;
+	t_ushort	maxcol;
 	size_t		len_max;
 	size_t		nb_elem;
-	t_ushort		nb_col;
-	t_ushort		nb_lin;
 	char		*term;
 	int			fd;
 }				t_select;
