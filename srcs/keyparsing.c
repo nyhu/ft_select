@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keyparsing.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tboos <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/11 14:41:03 by tboos             #+#    #+#             */
+/*   Updated: 2016/05/11 14:41:43 by tboos            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 static void	ft_elemprint(t_select *select, t_dclist *rabbit)
@@ -28,7 +40,7 @@ static void	ft_listprint(t_select *select)
 			lin = 0;
 			col++;
 			if (col > select->maxcol)
-				break;
+				break ;
 			ft_mvuplin(select);
 		}
 		else
@@ -61,7 +73,6 @@ static int	ft_chrmatch(t_select *select)
 int			ft_keyparse(t_select *select)
 {
 	int				match;
-
 	static void		(*ftab[])(t_select *) = {&ft_delelem, &ft_delelem,
 		&ft_goprevcol, &ft_gonextcol, &ft_goprevline, &ft_gonextline,
 		&ft_goendelem, &ft_gohomeelem};

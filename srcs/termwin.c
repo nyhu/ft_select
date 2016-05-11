@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   termwin.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tboos <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/11 14:44:10 by tboos             #+#    #+#             */
+/*   Updated: 2016/05/11 14:44:19 by tboos            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 int			ft_putcharinterr(int i)
@@ -6,7 +18,7 @@ int			ft_putcharinterr(int i)
 
 	c = i;
 	ft_putchar_fd(c, FD);
-	return(c);
+	return (c);
 }
 
 void		ft_mathcol(t_select *select)
