@@ -17,15 +17,6 @@ int			ft_scmp(void *data1, void *data2)
 	return (ft_strcmp((char *)data1, (char *)data2));
 }
 
-static void		ft_signals(void)
-{
-	signal(SIGWINCH, &ft_winsize);
-//	signal(SIGSEGV, segv);
-//	signal(SIGTSTP, tempstop);
-//	signal(SIGCONT, resume);
-//	signal(SIGSTOP, stop);
-}
-
 static void	ft_list_init(t_select *select, int ac, char **av)
 {
 	int			i;
@@ -41,7 +32,7 @@ static void	ft_list_init(t_select *select, int ac, char **av)
 			ft_exit_init(select, LIST_ERR);
 		if ((ft_strlen(av[i]) + 1) > (select->len_max))
 			select->len_max = ft_strlen(av[i]) + 1;
-		ft_sorted_dclist_insert(&(select->elems), new, &ft_scmp)
+		ft_sorted_dclist_insert(&(select->elems), new, &ft_scmp);
 	}
 	select->pos = select->elems;
 }

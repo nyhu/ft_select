@@ -18,7 +18,7 @@ static void	ft_elemprint(t_select *select, t_dclist *rabbit)
 		tputs(tgetstr("us", NULL), 1, &ft_putcharinterr);
 	if (rabbit->data_size)
 		tputs(tgetstr("mr", NULL), 1, &ft_putcharinterr);
-	ft_putstr_fd(((char *)rabbit->data), FD);
+	ft_putstrpad_fd(((char *)rabbit->data), (int)select->len_max, 'L', FD);
 	tputs(tgetstr("me", NULL), 1, &ft_putcharinterr);
 }
 
@@ -30,12 +30,12 @@ static void	ft_listprint(t_select *select)
 
 	col = 0;
 	lin = 0;
-	ft_elemprint(select, elems);
+	ft_elemprint(select, select->elems);
 	rabbit = select->elems->next;
-	while (rabbit != elems)
+	while (rabbit != select->elems)
 	{
 		lin++;
-		if (lin > maxlin)
+		if (lin > select->maxlin)
 		{
 			lin = 0;
 			col++;
@@ -45,7 +45,7 @@ static void	ft_listprint(t_select *select)
 		}
 		else
 			ft_mvdolin(select);
-		ft_elemprint(select, rabbit, col, lin);
+		ft_elemprint(select, rabbit);
 		rabbit = rabbit->next;
 	}
 }
@@ -80,7 +80,7 @@ int			ft_keyparse(t_select *select)
 	ft_clear();
 	ft_listprint(select);
 	ft_bzero(select->buf, 9);
-	if (read(stream->fd, stream->buf, 8) < 0)
+	if (read(0, select->buf, 8) < 0)
 		ft_exit_init(select, READ_ERR);
 	if (!(match = ft_chrmatch(select)))
 		ft_exit_init(select, NULL);

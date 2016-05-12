@@ -14,8 +14,8 @@
 
 void	ft_freedata(void *data, size_t size)
 {
-	size = 0;
-	data = NULL;
+	(void)size;
+	(void)data;
 }
 
 void	ft_resultprint(t_dclist *elems)

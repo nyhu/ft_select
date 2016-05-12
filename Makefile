@@ -13,7 +13,8 @@
 .SUFFIXES:
 NAME = ft_select
 FLAGS = -Wall -Wextra -Werror
-SRC = main.c add_del.c arrow_select.c free.c keyparsing.c termcaps.c termwin.c
+SRC = main.c add_del.c arrow_select.c free_select.c keyparsing.c \
+	termcaps_select.c termwin.c signal_select.c
 SRCS = $(foreach S, $(SRC), srcs/$(S))
 OBJ = $(SRCS:.c=.o)
 TERMCAPS = -lm -lncurses

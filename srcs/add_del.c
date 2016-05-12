@@ -24,9 +24,9 @@ void	ft_delelem(t_select *select)
 		select->pos = kill->next;
 		select->pos->prev = kill->prev;
 		kill->prev->next = select->pos;
-		nb_elem--;
+		select->nb_elem--;
 		free(kill);
-		ft_winsize;
+		ft_winsize(select);
 	}
 	else
 	{
