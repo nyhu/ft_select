@@ -18,6 +18,11 @@ SRCS = $(foreach S, $(SRC), srcs/$(S))
 OBJ = $(SRCS:.c=.o)
 TERMCAPS = -lm -lncurses
 HEAD = -I libft/includes -I includes
+OS = $(shell uname -s)
+
+ifeq ($(OS), Linux)
+	FLAGS += -D LINUX
+endif
 
 all: lib $(NAME)
 

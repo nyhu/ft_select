@@ -26,7 +26,7 @@
 # include "libft.h"
 # ifdef LINUX
 #  include "keys_linux.h"
-# elif
+# else
 #  include "keys_mac.h"
 # endif
 # define FT_PUTSTRFD ft_putstr_str_str_fd
