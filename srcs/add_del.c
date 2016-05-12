@@ -12,6 +12,15 @@
 
 #include "ft_select.h"
 
+void	ft_selectelem(t_select *select)
+{
+	if (!(select->pos->data_size))
+		select->pos->data_size = 1;
+	else
+		select->pos->data_size = 0;
+	ft_gonextline(select);
+}
+
 void	ft_delelem(t_select *select)
 {
 	t_dclist *kill;

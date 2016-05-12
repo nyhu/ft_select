@@ -34,6 +34,8 @@
 # define TERM_ERR "unable to get current terminal name in env"
 # define CTERM_ERR "unable to selecture terminal"
 # define READ_ERR "an error append during read"
+# define MAX_ELEM 0xFFFF
+# define MAXE_ERR "to much elements to be contaigned on display"
 # define FD 2
 
 typedef struct winsize	t_winsize;
@@ -45,12 +47,11 @@ typedef struct	s_select
 	t_dclist	*pos;
 	t_termios	termios_backup;
 	char		buf[9];
-	t_ushort	nb_col;
-	t_ushort	nb_lin;
+	t_ushort	collin;
 	t_ushort	maxlin;
 	t_ushort	maxcol;
-	size_t		len_max;
-	size_t		nb_elem;
+	t_ushort	len_max;
+	t_ushort	nb_elem;
 	char		*term;
 	int			fd;
 }				t_select;
@@ -61,6 +62,8 @@ typedef struct	s_select
 void			ft_exit_init(t_select *select, char *err);
 int				ft_scmp(void *data1, void *data2);
 int				ft_keyparse(t_select *select);
+void			ft_elemprint(t_select *select, t_dclist *rabbit);
+void			ft_listprint(t_select *select);
 /*
 ** signal_select.c
 */
@@ -70,12 +73,14 @@ void			ft_signals(void);
 /*
 ** add_del.c
 */
+void			ft_selectelem(t_select *select);
 void			ft_delelem(t_select *select);
 void			ft_gohomeelem(t_select *select);
 void			ft_goendelem(t_select *select);
 /*
 ** arrow_select.c
 */
+void			ft_nextcoord(t_select *select);
 void			ft_goprevline(t_select *select);
 void			ft_gonextline(t_select *select);
 void			ft_gonextcol(t_select *select);
@@ -85,21 +90,12 @@ void			ft_goprevcol(t_select *select);
 */
 void			ft_freedata(void *data, size_t size);
 void			ft_resultprint(t_dclist *elems);
-void			ft_clear(void);
 void			ft_exit_init(t_select *select, char *err);
-/*
-** termcaps_select.c
-*/
-void			ft_mvuplin(t_select *select);
-void			ft_mvdolin(t_select *select);
-void			ft_mvrightcol(t_select *select);
-void			ft_mvuplin(t_select *select);
 /*
 ** termwin.c
 */
 int				ft_putcharinterr(int i);
 int				ft_termios_handle(t_select *select, int mode);
 void			ft_winsize(t_select *select);
-void			ft_mathcol(t_select *select);
 
 #endif

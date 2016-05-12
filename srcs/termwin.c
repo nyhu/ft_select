@@ -21,22 +21,17 @@ int			ft_putcharinterr(int i)
 	return (c);
 }
 
-void		ft_mathcol(t_select *select)
-{
-	select->maxcol = select->nb_col / select->len_max;
-	select->maxlin = (select->nb_elem / select->maxcol) + 1;
-	if (select->maxlin > select->nb_lin)
-		select->maxlin = select->nb_lin;
-}
-
 void		ft_winsize(t_select *select)
 {
 	t_winsize	win;
 
 	ioctl(0, TIOCGWINSZ, &win);
-	select->nb_col = win.ws_col;
-	select->nb_lin = win.ws_row;
-	ft_mathcol(select);
+	select->maxlin = win.ws_row - 1;
+	select->maxcol = (win.ws_col - 1) / select->len_max;
+	tputs(tgetstr("cl", NULL), 1, &ft_putcharinterr);
+	ft_listprint(select);
+	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, &ft_putcharinterr);
+	select->collin = 0;
 	while (ft_keyparse(select))
 		;
 }

@@ -27,11 +27,6 @@ void	ft_resultprint(t_dclist *elems)
 	}
 }
 
-void	ft_clear(void)
-{
-	tputs(tgetstr("cl", NULL), 1, &ft_putcharinterr);
-}
-
 void	ft_exit_init(t_select *select, char *err)
 {
 	ft_termios_handle(select, 0);

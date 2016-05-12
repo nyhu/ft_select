@@ -12,7 +12,7 @@
 
 #include "ft_select.h"
 
-static void	ft_elemprint(t_select *select, t_dclist *rabbit)
+void		ft_elemprint(t_select *select, t_dclist *rabbit)
 {
 	if (rabbit == select->pos)
 		tputs(tgetstr("us", NULL), 1, &ft_putcharinterr);
@@ -22,29 +22,21 @@ static void	ft_elemprint(t_select *select, t_dclist *rabbit)
 	tputs(tgetstr("me", NULL), 1, &ft_putcharinterr);
 }
 
-static void	ft_listprint(t_select *select)
+void		ft_listprint(t_select *select)
 {
 	t_dclist		*rabbit;
-	t_ushort		col;
-	t_ushort		lin;
 
-	col = 0;
-	lin = 0;
+	select->collin = 0;
 	ft_elemprint(select, select->elems);
 	rabbit = select->elems->next;
 	while (rabbit != select->elems)
 	{
-		lin++;
-		if (lin > select->maxlin)
-		{
-			lin = 0;
-			col++;
-			if (col > select->maxcol)
+		(select->collin)++;
+			if (select->collin > (select->maxcol * select->maxlin))
 				break ;
-			ft_mvuplin(select);
-		}
-		else
-			ft_mvdolin(select);
+		tputs(tgoto(tgetstr("cm", NULL),
+		(select->collin / select->maxlin) * select->len_max,
+		select->collin % select->maxlin), 1, &ft_putcharinterr);
 		ft_elemprint(select, rabbit);
 		rabbit = rabbit->next;
 	}
@@ -54,7 +46,7 @@ static int	ft_chrmatch(t_select *select)
 {
 	int				i;
 	static ssize_t	match[] = {CLF, SUP, DEL, LEF, RIG, UPP, DOW,
-								END, HOM, NUL};
+								' ', END, HOM, NUL};
 
 	i = 0;
 //printf("\nbuf   = %lx\n", ((ssize_t *)(select->buf))[0]);
@@ -75,10 +67,8 @@ int			ft_keyparse(t_select *select)
 	int				match;
 	static void		(*ftab[])(t_select *) = {&ft_delelem, &ft_delelem,
 		&ft_goprevcol, &ft_gonextcol, &ft_goprevline, &ft_gonextline,
-		&ft_goendelem, &ft_gohomeelem};
+		&ft_selectelem, &ft_goendelem, &ft_gohomeelem};
 
-	ft_clear();
-	ft_listprint(select);
 	ft_bzero(select->buf, 9);
 	if (read(0, select->buf, 8) < 0)
 		ft_exit_init(select, READ_ERR);

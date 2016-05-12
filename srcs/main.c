@@ -27,13 +27,19 @@ static void	ft_list_init(t_select *select, int ac, char **av)
 	i = 0;
 	while (++i < ac)
 	{
+		new = NULL;
+		if (select->nb_elem == MAX_ELEM)
+			ft_exit_init(select, MAXE_ERR);
 		if (av[i] && ft_strlen(av[i]) && ++(select->nb_elem)
-			&& !(new = ft_dclstnew((void *)(av[i]), 0)))
+			&& !(new = ft_dclstnew((void *)av[i], 0)))
 			ft_exit_init(select, LIST_ERR);
-		if ((ft_strlen(av[i]) + 1) > (select->len_max))
+		if (new && (ft_strlen(av[i]) + 1) > (select->len_max))
 			select->len_max = ft_strlen(av[i]) + 1;
-		ft_sorted_dclist_insert(&(select->elems), new, &ft_scmp);
+		if (new)
+			ft_sorted_dclist_insert(&(select->elems), new, &ft_scmp);
 	}
+	if (!(select->elems))
+		ft_exit_init(select, NULL);
 	select->pos = select->elems;
 }
 
