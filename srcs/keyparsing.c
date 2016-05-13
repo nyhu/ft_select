@@ -27,8 +27,8 @@ void		ft_listprint(t_select *select)
 	t_dclist		*rabbit;
 
 	select->collin = 0;
-	ft_elemprint(select, select->elems);
-	rabbit = select->elems->next;
+	ft_elemprint(select, select->start);
+	rabbit = select->start->next;
 	while (rabbit != select->elems)
 	{
 		(select->collin)++;
@@ -46,10 +46,10 @@ static int	ft_chrmatch(t_select *select)
 {
 	int				i;
 	static ssize_t	match[] = {CLF, SUP, DEL, LEF, RIG, UPP, DOW,
-								' ', END, HOM, NUL};
+							SPA, ESC, END, APR, HOM, NUL};
 
 	i = 0;
-//printf("\nbuf   = %lx\n", ((ssize_t *)(select->buf))[0]);
+//dprintf(1, "\nbuf   = %lx\n", ((ssize_t *)(select->buf))[0]);
 	while (match[i])
 	{
 //printf("\nmatch = %lx\n", ma		tch[i]);
@@ -67,7 +67,8 @@ int			ft_keyparse(t_select *select)
 	int				match;
 	static void		(*ftab[])(t_select *) = {&ft_delelem, &ft_delelem,
 		&ft_goprevcol, &ft_gonextcol, &ft_goprevline, &ft_gonextline,
-		&ft_selectelem, &ft_goendelem, &ft_gohomeelem};
+		&ft_selectelem, &ft_escape_select, &ft_goendelem, &ft_gohomeelem,
+		&ft_gohomeelem};
 
 	ft_bzero(select->buf, 9);
 	if (read(0, select->buf, 8) < 0)

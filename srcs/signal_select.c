@@ -2,8 +2,11 @@
 
 void		ft_signalhandle(int i)
 {
+	t_select *select;
+
+	select = ft_save_select(NULL);
 	if (i == SIGWINCH)
-		ft_winsize(ft_save_select(NULL));
+		ft_winsize(select);
 }
 
 void		ft_signals(void)

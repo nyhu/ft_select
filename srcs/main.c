@@ -56,7 +56,11 @@ int			main(int ac, char **av)
 		ft_exit_init(&select, CTERM_ERR);
 	tputs(tgetstr("ti", NULL), 1, &ft_putcharinterr);
 	tputs(tgetstr("vi", NULL), 1, &ft_putcharinterr);
-	ft_signals();
+	select.start = select.elems;
 	ft_winsize(&select);
+	ft_signals();
+	ft_save_select(&select);
+	while (ft_keyparse(&select))
+		;
 	return (0);
 }

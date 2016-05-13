@@ -34,6 +34,7 @@ void	ft_exit_init(t_select *select, char *err)
 	tputs(tgetstr("te", NULL), 1, ft_putcharinterr);
 	if (!err && select->elems)
 		ft_dclstiter(select->elems, &ft_resultprint);
+	ft_putchar('\n');
 	if (err)
 		FT_PUTSTRFD("ft_select: init error: ", err, "\n", 2);
 	if (select->term)

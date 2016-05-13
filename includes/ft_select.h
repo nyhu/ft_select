@@ -45,6 +45,7 @@ typedef struct	s_select
 {
 	t_dclist	*elems;
 	t_dclist	*pos;
+	t_dclist	*start;
 	t_termios	termios_backup;
 	char		buf[9];
 	t_ushort	collin;
@@ -73,6 +74,7 @@ void			ft_signals(void);
 /*
 ** add_del.c
 */
+void			ft_escape_select(t_select *select);
 void			ft_selectelem(t_select *select);
 void			ft_delelem(t_select *select);
 void			ft_gohomeelem(t_select *select);

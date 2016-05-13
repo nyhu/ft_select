@@ -21,11 +21,14 @@
 # define RIG 0x435B1B //right
 # define UPP 0x415B1B //up
 # define DOW 0x425B1B //down
+# define SPA ' ' //space
+# define ESC 0x1B //escape
 # define CLEF 0x44353B315B1B //CTRL left
 # define CRIG 0x43353B315B1B //CTRL up
 # define CUPP 0x41353B315B1B //CTRL right
 # define CDOW 0x42353B315B1B //CTRL down
 # define END 0x464F1B //end
+# define APR 0x701B //alt p
 # define HOM 0x484F1B //home
 # define NUL 0x00 //\0
 

@@ -15,13 +15,19 @@
 void	ft_nextcoord(t_select *select)
 {
 	select->pos = select->pos->next;
-	if (select->collin == select->nb_elem - 1)
-		select->collin = 0;
-	else
+	(select->collin)++;
+	if (select->collin == (select->maxcol * select->maxlin))
 	{
-		(select->collin)++;
-		if (select->collin > (select->maxcol * select->maxlin))
-			ft_winsize(select) ;
+		while ((select->collin)--)
+			if ((select->start = select->start->next) == select->elems)
+				break ;
+		ft_winsize(select) ;
+	}
+	else if (select->pos == select->elems)
+	{
+		select->start = select->elems;
+		select->collin = 0;
+		ft_winsize(select);
 	}
 }
 
