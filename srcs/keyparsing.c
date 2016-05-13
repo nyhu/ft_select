@@ -46,7 +46,7 @@ static int	ft_chrmatch(t_select *select)
 {
 	int				i;
 	static ssize_t	match[] = {CLF, SUP, DEL, LEF, RIG, UPP, DOW,
-							SPA, ESC, END, APR, HOM, NUL};
+					SPA, ESC, CTA, CTD, END, HOM, NUL};
 
 	i = 0;
 //dprintf(1, "\nbuf   = %lx\n", ((ssize_t *)(select->buf))[0]);
@@ -67,8 +67,7 @@ int			ft_keyparse(t_select *select)
 	int				match;
 	static void		(*ftab[])(t_select *) = {&ft_delelem, &ft_delelem,
 		&ft_goprevcol, &ft_gonextcol, &ft_goprevline, &ft_gonextline,
-		&ft_selectelem, &ft_escape_select, &ft_goendelem, &ft_gohomeelem,
-		&ft_gohomeelem};
+		&ft_selectelem, &ft_escape_select, &ft_select_all, &ft_deselect_all, &ft_goendelem, &ft_gohomeelem};
 
 	ft_bzero(select->buf, 9);
 	if (read(0, select->buf, 8) < 0)

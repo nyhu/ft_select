@@ -12,12 +12,34 @@
 
 #include "ft_select.h"
 
-void	ft_escape_select(t_select *select)
+void	ft_select_all(t_select *select)
 {
-	if (select->elems)
-		ft_dclstdel(&(select->elems), &ft_freedata);
-	select->elems = NULL;
-	ft_exit_init(select, NULL);
+	select->pos = select->elems->prev;
+	select->start = select->elems;
+	while (select->pos != select->elems)
+	{
+		if (!(select->pos->data_size))
+			select->pos->data_size = 1;
+		select->pos = select->pos->prev;
+	}
+	if (!(select->pos->data_size))
+		select->pos->data_size = 1;
+	ft_winsize(select);
+}
+
+void	ft_deselect_all(t_select *select)
+{
+	select->pos = select->elems->prev;
+	select->start = select->elems;
+	while (select->pos != select->elems)
+	{
+		if (select->pos->data_size)
+			select->pos->data_size = 0;
+		select->pos = select->pos->prev;
+	}
+	if (select->pos->data_size)
+		select->pos->data_size = 0;
+	ft_winsize(select);
 }
 
 void	ft_selectelem(t_select *select)
@@ -27,30 +49,6 @@ void	ft_selectelem(t_select *select)
 	else
 		select->pos->data_size = 0;
 	ft_gonextline(select);
-}
-
-void	ft_delelem(t_select *select)
-{
-	t_dclist *kill;
-
-	kill = select->pos;
-	if (kill == select->elems)
-		select->elems = kill->next;
-	if (select->nb_elem > 1)
-	{
-		select->pos = kill->next;
-		select->pos->prev = kill->prev;
-		kill->prev->next = select->pos;
-		select->nb_elem--;
-		free(kill);
-		ft_winsize(select);
-	}
-	else
-	{
-		select->elems = NULL;
-		free(kill);
-		ft_exit_init(select, NULL);
-	}
 }
 
 void	ft_gohomeelem(t_select *select)

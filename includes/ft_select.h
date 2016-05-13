@@ -74,9 +74,9 @@ void			ft_signals(void);
 /*
 ** add_del.c
 */
-void			ft_escape_select(t_select *select);
+void			ft_select_all(t_select *select);
+void			ft_deselect_all(t_select *select);
 void			ft_selectelem(t_select *select);
-void			ft_delelem(t_select *select);
 void			ft_gohomeelem(t_select *select);
 void			ft_goendelem(t_select *select);
 /*
@@ -90,6 +90,8 @@ void			ft_goprevcol(t_select *select);
 /*
 ** free_select.c
 */
+void			ft_delelem(t_select *select);
+void			ft_escape_select(t_select *select);
 void			ft_freedata(void *data, size_t size);
 void			ft_resultprint(t_dclist *elems);
 void			ft_exit_init(t_select *select, char *err);
