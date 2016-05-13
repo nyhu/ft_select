@@ -58,7 +58,6 @@ int			main(int ac, char **av)
 	tputs(tgetstr("vi", NULL), 1, &ft_putcharinterr);
 	select.start = select.elems;
 	ft_winsize(&select);
-	ft_signals();
 	ft_save_select(&select);
 	while (ft_keyparse(&select))
 		;

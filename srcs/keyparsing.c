@@ -74,7 +74,7 @@ int			ft_keyparse(t_select *select)
 		ft_exit_init(select, READ_ERR);
 	if (!(match = ft_chrmatch(select)))
 		ft_exit_init(select, NULL);
-	else if (match > 0)
+	else if (select->maxcol && match > 0)
 		(*ftab[match - 1])(select);
 	return (1);
 }

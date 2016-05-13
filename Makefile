@@ -14,7 +14,7 @@
 NAME = ft_select
 FLAGS = -Wall -Wextra -Werror
 SRC = main.c add_del.c arrow_select.c free_select.c keyparsing.c \
-	termwin.c signal_select.c
+	termwin.c signal_select.c bonus_select.c
 SRCS = $(foreach S, $(SRC), srcs/$(S))
 OBJ = $(SRCS:.c=.o)
 TERMCAPS = -lm -lncurses
