@@ -48,15 +48,14 @@ int			main(int ac, char **av)
 	t_select	select;
 
 	ft_bzero(&select, sizeof(t_select));
-	if (!(select.term = ft_strdup(getenv("TERM")))
-		|| !tgetent(NULL, select.term))
+	if (!tgetent(NULL, getenv("TERM")))
 		ft_exit_init(&select, TERM_ERR);
 	ft_list_init(&select, ac, av);
+	select.start = select.elems;
 	if (!ft_termios_handle(&select, 1))
 		ft_exit_init(&select, CTERM_ERR);
 	tputs(tgetstr("ti", NULL), 1, &ft_putcharinterr);
 	tputs(tgetstr("vi", NULL), 1, &ft_putcharinterr);
-	select.start = select.elems;
 	ft_winsize(&select);
 	ft_save_select(&select);
 	while (ft_keyparse(&select))

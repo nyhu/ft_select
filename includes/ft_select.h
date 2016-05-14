@@ -31,12 +31,13 @@
 # endif
 # define FT_PUTSTRFD ft_putstr_str_str_fd
 # define LIST_ERR "malloc error while crafting list"
-# define TERM_ERR "unable to get current terminal name in env"
-# define CTERM_ERR "unable to selecture terminal"
+# define TERM_ERR "unable to get current terminal name in environnement"
+# define CTERM_ERR "unable to set terminal properly"
 # define READ_ERR "an error append during read"
 # define MAX_ELEM 0xFFFF
 # define MAXE_ERR "to much elements to be contaigned on display"
 # define FD 2
+
 
 typedef struct winsize	t_winsize;
 typedef struct termios	t_termios;
@@ -53,7 +54,6 @@ typedef struct	s_select
 	t_ushort	maxcol;
 	t_ushort	len_max;
 	t_ushort	nb_elem;
-	char		*term;
 	int			fd;
 }				t_select;
 
@@ -91,7 +91,7 @@ void			ft_goprevcol(t_select *select);
 */
 void			ft_escape_select(t_select *select);
 void			ft_freedata(void *data, size_t size);
-void			ft_resultprint(t_dclist *elems);
+void			ft_print_freedata(void *data, size_t size);
 void			ft_exit_init(t_select *select, char *err);
 /*
 ** termwin.c

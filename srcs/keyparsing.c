@@ -25,14 +25,17 @@ void		ft_elemprint(t_select *select, t_dclist *rabbit)
 void		ft_listprint(t_select *select)
 {
 	t_dclist		*rabbit;
+	t_ushort		memo;
 
+	memo = select->collin;
 	select->collin = 0;
+	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, &ft_putcharinterr);
 	ft_elemprint(select, select->start);
 	rabbit = select->start->next;
 	while (rabbit != select->elems)
 	{
 		(select->collin)++;
-			if (select->collin > (select->maxcol * select->maxlin))
+			if (select->collin == (select->maxcol * select->maxlin))
 				break ;
 		tputs(tgoto(tgetstr("cm", NULL),
 		(select->collin / select->maxlin) * select->len_max,
@@ -40,6 +43,10 @@ void		ft_listprint(t_select *select)
 		ft_elemprint(select, rabbit);
 		rabbit = rabbit->next;
 	}
+	select->collin = memo;
+	tputs(tgoto(tgetstr("cm", NULL),
+	(select->collin / select->maxlin) * select->len_max,
+	select->collin % select->maxlin), 1, &ft_putcharinterr);
 }
 
 static int	ft_chrmatch(t_select *select)

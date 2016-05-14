@@ -18,7 +18,10 @@ void	ft_delelem(t_select *select)
 
 	kill = select->pos;
 	if (kill == select->elems)
-		select->elems = kill->next;
+	{
+		select->elems = select->elems->next;
+		select->start = select->elems;
+	}
 	if (select->nb_elem > 1)
 	{
 		select->pos = kill->next;
@@ -42,12 +45,12 @@ void	ft_select_all(t_select *select)
 	select->start = select->elems;
 	while (select->pos != select->elems)
 	{
-		if (!(select->pos->data_size))
-			select->pos->data_size = 1;
+		select->pos->data_size |= 1;
 		select->pos = select->pos->prev;
 	}
-	if (!(select->pos->data_size))
-		select->pos->data_size = 1;
+	select->pos->data_size |= 1;
+	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, &ft_putcharinterr);
+	select->collin = 0;
 	ft_winsize(select);
 }
 
@@ -57,20 +60,20 @@ void	ft_deselect_all(t_select *select)
 	select->start = select->elems;
 	while (select->pos != select->elems)
 	{
-		if (select->pos->data_size)
-			select->pos->data_size = 0;
+		select->pos->data_size &= ~1;
 		select->pos = select->pos->prev;
 	}
-	if (select->pos->data_size)
-		select->pos->data_size = 0;
+	select->pos->data_size &= ~1;
+	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, &ft_putcharinterr);
+	select->collin = 0;
 	ft_winsize(select);
 }
 
 void	ft_selectelem(t_select *select)
 {
 	if (!(select->pos->data_size))
-		select->pos->data_size = 1;
+		select->pos->data_size |= 1;
 	else
-		select->pos->data_size = 0;
+		select->pos->data_size &= ~1;
 	ft_gonextline(select);
 }

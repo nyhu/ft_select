@@ -22,15 +22,15 @@ void	ft_escape_select(t_select *select)
 
 void	ft_freedata(void *data, size_t size)
 {
-	(void)size;
 	(void)data;
+	(void)size;
 }
 
-void	ft_resultprint(t_dclist *elems)
+void	ft_print_freedata(void *data, size_t size)
 {
-	if (elems->data_size)
+	if (size)
 	{
-		ft_putstr(((char *)elems->data));
+		ft_putstr(((char *)data));
 		ft_putchar(' ');
 	}
 }
@@ -40,15 +40,13 @@ void	ft_exit_init(t_select *select, char *err)
 	ft_termios_handle(select, 0);
 	tputs(tgetstr("ve", NULL), 1, ft_putcharinterr);
 	tputs(tgetstr("te", NULL), 1, ft_putcharinterr);
-	if (!err && select->elems)
-		ft_dclstiter(select->elems, &ft_resultprint);
-	ft_putchar('\n');
 	if (err)
 		FT_PUTSTRFD("ft_select: init error: ", err, "\n", 2);
-	if (select->term)
-		free(select->term);
 	if (select->elems)
-		ft_dclstdel(&(select->elems), &ft_freedata);
+	{
+		ft_dclstdel(&(select->elems), &ft_print_freedata);
+		ft_putchar('\n');
+	}
 	if (err)
 		exit(1);
 	exit(0);

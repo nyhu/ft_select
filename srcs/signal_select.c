@@ -33,7 +33,11 @@ void		ft_signalhandle(int i)
 
 	select = ft_save_select(NULL);
 	if (i == SIGWINCH)
+	{
+		select->pos = select->start;
+		select->collin = 0;
 		ft_winsize(select);
+	}
 	if (i == SIGTSTP || i == SIGSTOP || i == SIGCONT)
 		ft_stop_cont(select, i == SIGTSTP ? 1 : i == SIGSTOP ? 1 : 0);
 	if (i == SIGINT || i == SIGQUIT || i == SIGTERM)
