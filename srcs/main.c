@@ -17,6 +17,22 @@ int			ft_scmp(void *data1, void *data2)
 	return (ft_strcmp((char *)data1, (char *)data2));
 }
 
+static void	ft_modeset(t_dclist *new)
+{
+	t_stat	buf;
+	char	*tmp;
+
+	if (((char *)new->data)[0] != '/'
+		&& (tmp = ft_strslashjoin(getenv("PWD"), ((char *)new->data))))
+	{
+		if ((lstat(tmp, &buf)) >= 0)
+			new->data_size = (buf.st_mode & ~1);
+		free(tmp);
+	}
+	else if ((lstat(((char *)new->data), &buf)) >= 0)
+		new->data_size = (buf.st_mode & ~1);
+}
+
 static void	ft_list_init(t_select *select, int ac, char **av)
 {
 	int			i;
@@ -36,7 +52,10 @@ static void	ft_list_init(t_select *select, int ac, char **av)
 		if (new && (ft_strlen(av[i]) + 1) > (select->len_max))
 			select->len_max = ft_strlen(av[i]) + 1;
 		if (new)
+		{
+			ft_modeset(new);
 			ft_sorted_dclist_insert(&(select->elems), new, &ft_scmp);
+		}
 	}
 	if (!(select->elems))
 		ft_exit_init(select, NULL);

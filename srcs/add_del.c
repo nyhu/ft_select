@@ -71,7 +71,7 @@ void	ft_deselect_all(t_select *select)
 
 void	ft_selectelem(t_select *select)
 {
-	if (!(select->pos->data_size))
+	if (!((select->pos->data_size) & 1))
 		select->pos->data_size |= 1;
 	else
 		select->pos->data_size &= ~1;

@@ -38,7 +38,7 @@
 # define MAXE_ERR "to much elements to be contaigned on display"
 # define FD 2
 
-
+typedef struct stat		t_stat;
 typedef struct winsize	t_winsize;
 typedef struct termios	t_termios;
 typedef unsigned short	t_ushort;
@@ -54,7 +54,6 @@ typedef struct	s_select
 	t_ushort	maxcol;
 	t_ushort	len_max;
 	t_ushort	nb_elem;
-	int			fd;
 }				t_select;
 
 /*

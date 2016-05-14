@@ -28,7 +28,7 @@ void	ft_freedata(void *data, size_t size)
 
 void	ft_print_freedata(void *data, size_t size)
 {
-	if (size)
+	if (size & 1)
 	{
 		ft_putstr(((char *)data));
 		ft_putchar(' ');

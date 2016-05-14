@@ -16,8 +16,23 @@ void		ft_elemprint(t_select *select, t_dclist *rabbit)
 {
 	if (rabbit == select->pos)
 		tputs(tgetstr("us", NULL), 1, &ft_putcharinterr);
-	if (rabbit->data_size)
+	if (rabbit->data_size & 1)
 		tputs(tgetstr("mr", NULL), 1, &ft_putcharinterr);
+	if (S_ISDIR(rabbit->data_size))
+		ft_putstr_fd(ANSI_COLOR_CYAN, FD);
+	else if (S_ISLNK(rabbit->data_size))
+		ft_putstr_fd(ANSI_COLOR_YELLOW, FD);
+	else if (S_ISREG(rabbit->data_size)
+		&& 00100 & rabbit->data_size)
+		ft_putstr_fd(ANSI_COLOR_GREEN, FD);
+	else if (S_ISCHR(rabbit->data_size))
+		ft_putstr_fd(ANSI_COLOR_BLUE, FD);
+	else if (S_ISBLK(rabbit->data_size))
+		ft_putstr_fd(ANSI_COLOR_RED, FD);
+	else if (S_ISFIFO(rabbit->data_size))
+		ft_putstr_fd(ANSI_COLOR_MAGENTA, FD);
+	else if (S_ISSOCK(rabbit->data_size))
+		ft_putstr_fd(ANSI_COLOR_MAGENTA, FD);
 	ft_putstrpad_fd(((char *)rabbit->data), (int)select->len_max, 'L', FD);
 	tputs(tgetstr("me", NULL), 1, &ft_putcharinterr);
 }
@@ -74,7 +89,8 @@ int			ft_keyparse(t_select *select)
 	int				match;
 	static void		(*ftab[])(t_select *) = {&ft_delelem, &ft_delelem,
 		&ft_goprevcol, &ft_gonextcol, &ft_goprevline, &ft_gonextline,
-		&ft_selectelem, &ft_escape_select, &ft_select_all, &ft_deselect_all, &ft_goendelem, &ft_gohomeelem};
+		&ft_selectelem, &ft_escape_select, &ft_select_all, &ft_deselect_all,
+		&ft_goendelem, &ft_gohomeelem};
 
 	ft_bzero(select->buf, 9);
 	if (read(0, select->buf, 8) < 0)
