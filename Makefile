@@ -12,9 +12,9 @@
 .PHONY: fclean re
 .SUFFIXES:
 NAME = ft_select
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=gnu99
 SRC = main.c add_del.c arrow_select.c free_select.c keyparsing.c \
-	termwin.c signal_select.c bonus_select.c
+	termwin.c signal_select.c bonus_select.c termcaps_select.c
 SRCS = $(foreach S, $(SRC), srcs/$(S))
 OBJ = $(SRCS:.c=.o)
 TERMCAPS = -lm -lncurses

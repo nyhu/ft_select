@@ -44,6 +44,7 @@ typedef struct termios	t_termios;
 typedef unsigned short	t_ushort;
 typedef struct	s_select
 {
+	char		tstate;
 	t_dclist	*elems;
 	t_dclist	*pos;
 	t_dclist	*start;
@@ -101,6 +102,7 @@ void			ft_winsize(t_select *select);
 /*
 ** bonus_select.c
 */
+void			ft_help(t_select *select);
 void			ft_gohomeelem(t_select *select);
 void			ft_goendelem(t_select *select);
 

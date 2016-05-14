@@ -26,11 +26,12 @@ void		ft_winsize(t_select *select)
 	t_winsize	win;
 
 	ioctl(0, TIOCGWINSZ, &win);
-	select->maxlin = win.ws_row;
+	select->maxlin = win.ws_row - 1;
 	select->maxcol = win.ws_col / select->len_max;
-	tputs(tgoto(tgetstr("cm", NULL), win.ws_col, win.ws_col),
-	1, &ft_putcharinterr);
 	tputs(tgetstr("cl", NULL), 1, &ft_putcharinterr);
+	tputs(tgoto(tgetstr("cm", NULL), 0, win.ws_row - 1),
+	1, &ft_putcharinterr);
+	FT_PUTSTRFD(ANSI_COLOR_RED, HELP_MESS, ANSI_COLOR_RESET, FD);
 	if (!(select->maxcol))
 		ft_putstr_fd("PLEASE RESIZE !!", 2);
 	else

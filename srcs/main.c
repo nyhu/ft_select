@@ -38,9 +38,8 @@ static void	ft_list_init(t_select *select, int ac, char **av)
 	int			i;
 	t_dclist	*new;
 
-	if (ac == 1)
-		ft_exit_init(select, NULL);
 	i = 0;
+	select->len_max = HELP_MESS_LEN;
 	while (++i < ac)
 	{
 		new = NULL;

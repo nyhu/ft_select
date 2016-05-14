@@ -13,6 +13,8 @@
 #ifndef KEYS_MAC_H
 # define KEYS_MAC_H
 
+# define HELP_MESS "Help : Alt-H"
+# define HELP_MESS_LEN 12
 # define CLF 0x0A //\n
 # define SUP 0x7E335B1B //sup
 # define CHT 0x09 //\t
