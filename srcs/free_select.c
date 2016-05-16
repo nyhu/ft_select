@@ -37,9 +37,12 @@ void	ft_print_freedata(void *data, size_t size)
 
 void	ft_exit_init(t_select *select, char *err)
 {
+	ft_clear(select);
+	ft_tgoto(select, 0, 0);
 	ft_termios_handle(select, 0);
-	tputs(tgetstr("ve", NULL), 1, ft_putcharinterr);
-	tputs(tgetstr("te", NULL), 1, ft_putcharinterr);
+	ft_prepcursor(select, 0);
+	if (select->term)
+		free(select->term);
 	if (err)
 		FT_PUTSTRFD("ft_select: init error: ", err, "\n", 2);
 	if (select->elems)

@@ -25,7 +25,7 @@
 # define HELP_PAGE8 "      |______|\n\n"
 # define HELP_PAGE9 "\u2191\u2193 : Move up and down\n"
 # define HELP_PAGE10 "\u2190\u2192 : Move on same raw\n"
-# define HELP_PAGE11 "Space : Select current\nHome-End : Go to first or last\n"
+# define HELP_PAGE11 "Space : Select current\nHome : Go to first\n"
 # define HELP_PAGE12 "Delete-Suppr : Remove current from list\n"
 # define HELP_PAGE13 "Clrl-A/D : Select/Deselect All\n"
 # define HELP_PAGE14 "Letter Chain : Case sensitive search\n"

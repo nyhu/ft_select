@@ -28,14 +28,14 @@ void		ft_winsize(t_select *select)
 	ioctl(0, TIOCGWINSZ, &win);
 	select->maxlin = win.ws_row - 1;
 	select->maxcol = win.ws_col / select->len_max;
-	tputs(tgetstr("cl", NULL), 1, &ft_putcharinterr);
-	tputs(tgoto(tgetstr("cm", NULL), 0, win.ws_row - 1),
-	1, &ft_putcharinterr);
-	FT_PUTSTRFD(ANSI_COLOR_RED, HELP_MESS, ANSI_COLOR_RESET, FD);
+	ft_clear(select);
 	if (!(select->maxcol))
-		ft_putstr_fd("PLEASE RESIZE !!", 2);
+		FT_PUTSTRFD(ANSI_COLOR_RED, "PLEASE RESIZE !!", ANSI_COLOR_RESET, 2);
 	else
+	{
+		ft_print_search(select);
 		ft_listprint(select);
+	}
 	ft_signals();
 }
 

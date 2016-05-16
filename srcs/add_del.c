@@ -12,7 +12,7 @@
 
 #include "ft_select.h"
 
-void	ft_delelem(t_select *select)
+static void	ft_del_elem(t_select *select)
 {
 	t_dclist *kill;
 
@@ -38,8 +38,15 @@ void	ft_delelem(t_select *select)
 		ft_exit_init(select, NULL);
 	}
 }
+void		ft_delelem(t_select *select)
+{
+	if (((ssize_t *)(select->buf))[0] == DEL && select->search[0])
+		ft_cur_search(select);
+	else
+		ft_del_elem(select);
+}
 
-void	ft_select_all(t_select *select)
+void		ft_select_all(t_select *select)
 {
 	select->pos = select->elems->prev;
 	select->start = select->elems;
@@ -49,12 +56,12 @@ void	ft_select_all(t_select *select)
 		select->pos = select->pos->prev;
 	}
 	select->pos->data_size |= 1;
-	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, &ft_putcharinterr);
+	ft_tgoto(select, 0, 0);
 	select->collin = 0;
 	ft_winsize(select);
 }
 
-void	ft_deselect_all(t_select *select)
+void		ft_deselect_all(t_select *select)
 {
 	select->pos = select->elems->prev;
 	select->start = select->elems;
@@ -64,12 +71,12 @@ void	ft_deselect_all(t_select *select)
 		select->pos = select->pos->prev;
 	}
 	select->pos->data_size &= ~1;
-	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, &ft_putcharinterr);
+	ft_tgoto(select, 0, 0);
 	select->collin = 0;
 	ft_winsize(select);
 }
 
-void	ft_selectelem(t_select *select)
+void		ft_selectelem(t_select *select)
 {
 	if (!((select->pos->data_size) & 1))
 		select->pos->data_size |= 1;

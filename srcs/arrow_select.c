@@ -20,7 +20,7 @@ void	ft_nextcoord(t_select *select)
 	{
 		select->start = select->elems;
 		select->collin = 0;
-		tputs(tgoto(tgetstr("cm", NULL), 0, 0), 1, &ft_putcharinterr);
+		ft_tgoto(select, 0, 0);
 		ft_winsize(select);
 	}
 	else if (select->collin == (select->maxcol * select->maxlin))
@@ -48,13 +48,11 @@ void	ft_goprevline(t_select *select)
 		select->pos = select->pos->prev;
 		(select->collin)--;
 		ft_elemprint(select, select->pos->next);
-		tputs(tgoto(tgetstr("cm", NULL),
-		(select->collin / select->maxlin) * select->len_max,
-		select->collin % select->maxlin), 1, &ft_putcharinterr);
+		ft_tgoto(select, (select->collin / select->maxlin) * select->len_max,
+		select->collin % select->maxlin);
 		ft_elemprint(select, select->pos);
-		tputs(tgoto(tgetstr("cm", NULL),
-		(select->collin / select->maxlin) * select->len_max,
-		select->collin % select->maxlin), 1, &ft_putcharinterr);
+		ft_tgoto(select, (select->collin / select->maxlin) * select->len_max,
+		select->collin % select->maxlin);
 	}
 }
 
@@ -62,13 +60,11 @@ void	ft_gonextline(t_select *select)
 {
 	ft_nextcoord(select);
 	ft_elemprint(select, select->pos->prev);
-	tputs(tgoto(tgetstr("cm", NULL),
-	(select->collin / select->maxlin) * select->len_max,
-	select->collin % select->maxlin), 1, &ft_putcharinterr);
+	ft_tgoto(select, (select->collin / select->maxlin) * select->len_max,
+	select->collin % select->maxlin);
 	ft_elemprint(select, select->pos);
-	tputs(tgoto(tgetstr("cm", NULL),
-	(select->collin / select->maxlin) * select->len_max,
-	select->collin % select->maxlin), 1, &ft_putcharinterr);
+	ft_tgoto(select, (select->collin / select->maxlin) * select->len_max,
+	select->collin % select->maxlin);
 }
 
 void	ft_gonextcol(t_select *select)
