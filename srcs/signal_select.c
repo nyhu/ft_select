@@ -32,7 +32,7 @@ void		ft_signalhandle(int i)
 	select = ft_save_select(NULL);
 	if (i == SIGWINCH)
 		ft_winsize(select);
-	if (i == SIGTSTP || i == SIGSTOP || i == SIGCONT)
+	if (i == SIGTSTP || i == SIGCONT)
 		ft_stop_cont(select, i == SIGTSTP ? 1 : i == SIGSTOP ? 1 : 0);
 	if (i == SIGINT || i == SIGQUIT || i == SIGTERM)
 		ft_escape_select(select);
@@ -45,7 +45,6 @@ void		ft_signals(void)
 	signal(SIGQUIT, &ft_signalhandle);
 	signal(SIGTERM, &ft_signalhandle);
 	signal(SIGTSTP, &ft_signalhandle);
-	signal(SIGSTOP, &ft_signalhandle);
 	signal(SIGCONT, &ft_signalhandle);
 }
 
