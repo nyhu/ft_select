@@ -6,7 +6,7 @@
 /*   By: tboos <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 14:41:03 by tboos             #+#    #+#             */
-/*   Updated: 2016/05/11 14:41:43 by tboos            ###   ########.fr       */
+/*   Updated: 2016/05/23 08:47:47 by tboos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void		ft_listprint(t_select *select)
 	while (rabbit != select->elems)
 	{
 		(select->collin)++;
-			if (select->collin == (select->maxcol * select->maxlin))
-				break ;
+		if (select->collin == (select->maxcol * select->maxlin))
+			break ;
 		ft_tgoto(select, (select->collin / select->maxlin) * select->len_max,
 		select->collin % select->maxlin);
 		ft_elemprint(select, rabbit);

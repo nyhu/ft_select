@@ -6,7 +6,7 @@
 /*   By: tboos <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 14:43:35 by tboos             #+#    #+#             */
-/*   Updated: 2016/05/11 14:43:36 by tboos            ###   ########.fr       */
+/*   Updated: 2016/05/23 08:42:41 by tboos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	ft_del_elem(t_select *select)
 		ft_exit_init(select, NULL);
 	}
 }
+
 void		ft_delelem(t_select *select)
 {
 	if (((ssize_t *)(select->buf))[0] == DEL && select->search[0])

@@ -6,7 +6,7 @@
 /*   By: tboos <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 15:23:28 by tboos             #+#    #+#             */
-/*   Updated: 2016/05/11 14:36:45 by tboos            ###   ########.fr       */
+/*   Updated: 2016/05/23 08:41:37 by tboos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # else
 #  include "keys_mac.h"
 # endif
+
 /*
 ** Fell free to change SEARCH_SIZE.
 ** CURSOR_VISIBILITY on 0 will make cursor disapear, any other make it visible.

@@ -6,7 +6,7 @@
 /*   By: tboos <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 14:37:30 by tboos             #+#    #+#             */
-/*   Updated: 2016/05/11 14:37:53 by tboos            ###   ########.fr       */
+/*   Updated: 2016/05/23 08:45:49 by tboos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int			main(int ac, char **av)
 	if (!(select.term = ft_strdup(getenv("TERM")))
 		|| !tgetent(NULL, select.term))
 		select.tstate = 1;
-	//	ft_exit_init(&select, TERM_ERR);
 	ft_list_init(&select, ac, av);
 	select.start = select.elems;
 	if (!ft_termios_handle(&select, 1))

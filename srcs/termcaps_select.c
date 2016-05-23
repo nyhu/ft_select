@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   termcaps_select.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tboos <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/23 08:48:00 by tboos             #+#    #+#             */
+/*   Updated: 2016/05/23 08:48:29 by tboos            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 void	ft_print_mode(t_select *select, t_dclist *rabbit)
@@ -15,7 +27,7 @@ void	ft_print_mode(t_select *select, t_dclist *rabbit)
 void	ft_del_line(t_select *select)
 {
 	if (select->tstate)
-		 ft_putstr_fd(CLEAR_LINE, FD);
+		ft_putstr_fd(CLEAR_LINE, FD);
 	else
 		tputs(tgetstr("dl", NULL), 1, &ft_putcharinterr);
 }
@@ -23,7 +35,7 @@ void	ft_del_line(t_select *select)
 void	ft_clear(t_select *select)
 {
 	if (select->tstate)
-		 ft_putstr_fd(CLEAR, FD);
+		ft_putstr_fd(CLEAR, FD);
 	else
 		tputs(tgetstr("cl", NULL), 1, &ft_putcharinterr);
 }

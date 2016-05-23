@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signal_select.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tboos <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/23 08:43:10 by tboos             #+#    #+#             */
+/*   Updated: 2016/05/23 08:47:15 by tboos            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 static void	ft_stop_cont(t_select *select, int mode)
@@ -33,7 +45,7 @@ void		ft_signalhandle(int i)
 	if (i == SIGWINCH)
 		ft_winsize(select);
 	if (i == SIGTSTP || i == SIGCONT)
-		ft_stop_cont(select, i == SIGTSTP ? 1 : i == SIGSTOP ? 1 : 0);
+		ft_stop_cont(select, i == SIGTSTP ? 1 : 0);
 	if (i == SIGINT || i == SIGQUIT || i == SIGTERM)
 		ft_escape_select(select);
 }
@@ -56,4 +68,3 @@ t_select	*ft_save_select(t_select *select)
 		save = select;
 	return (save);
 }
-

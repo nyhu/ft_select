@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus_select.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tboos <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/23 08:42:53 by tboos             #+#    #+#             */
+/*   Updated: 2016/05/23 08:42:59 by tboos            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 void	ft_help(t_select *select)
@@ -16,6 +28,7 @@ void	ft_help(t_select *select)
 	ft_putstr_fd(HELP_PAGE9, 2);
 	ft_putstr_fd(HELP_PAGE10, 2);
 	ft_putstr_fd(HELP_PAGE11, 2);
+	ft_putstr_fd(HELP_PAGE11B, 2);
 	ft_putstr_fd(HELP_PAGE12, 2);
 	ft_putstr_fd(HELP_PAGE13, 2);
 	ft_putstr_fd(HELP_PAGE14, 2);
